@@ -1,0 +1,20 @@
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.question-container {
+  margin: 2rem 0;
+}
+
+.feedback {
+  margin-top: 1rem;
+}

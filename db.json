@@ -1,0 +1,36 @@
+{
+  "quizzes": [
+    {
+      "id": 1,
+      "title": "JavaScript Fundamentals",
+      "questions": [1, 2, 3, 4, 5]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple_choice",
+      "question": "What is the output of 2 + '2' in JavaScript?",
+      "options": ["4", "22", "NaN"],
+      "correct_answer": "22",
+      "explanation": "JavaScript uses + for both addition and string concatenation"
+    },
+    {
+      "id": 2,
+      "type": "text",
+      "question": "What keyword declares a variable in ES6?",
+      "correct_answer": "const",
+      "explanation": "const and let are block-scoped declarations"
+    },
+    {
+      "id": 3,
+      "type": "image",
+      "question": "Select the Python logo",
+      "images": [
+        {"id": "py", "url": "https://example.com/python.png"},
+        {"id": "js", "url": "https://example.com/js.png"}
+      ],
+      "correct_answer": "py"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 class QuizApp {
   constructor() {
-      this.apiBase = 'https://my-json-server.typicode.com/<USER>/<REPO>';
+      this.apiBase = 'https://my-json-server.typicode.com/krishPatelCode/SPA';
       this.templates = {};
       this.state = {
           currentView: 'start',
@@ -121,6 +121,7 @@ class QuizApp {
           });
       }
   }
+  
 
   // Add remaining helper methods for timer, score calculation, etc.
 }

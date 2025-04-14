@@ -1,3 +1,8 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+  new QuizApp();
+});
+
 class QuizApp {
   constructor() {
       this.apiBase = 'https://my-json-server.typicode.com/krishPatelCode/SPA';
@@ -22,18 +27,36 @@ class QuizApp {
               document.getElementById(`${template}-template`).innerHTML
           );
       });
+      Handlebars.registerPartial('text', Handlebars.compile(`
+    <div class="text-question">
+        <h4>{{question}}</h4>
+        <input type="text" class="form-control answer-input" placeholder="Type your answer">
+        <button class="btn btn-primary mt-2 submit-answer">Submit</button>
+    </div>
+`));
+      
 
       // Register partials
-      Handlebars.registerPartial('multipleChoice', `
-          <div class="multiple-choice">
-              <h4>{{question}}</h4>
-              {{#each options}}
-              <button class="btn btn-outline-primary option" data-value="{{this}}">
-                  {{this}}
-              </button>
-              {{/each}}
-          </div>
-      `);
+      Handlebars.registerPartial('multiple_choice', Handlebars.compile(`
+    <div class="multiple-choice">
+        <h4>{{question}}</h4>
+        {{#each options}}
+        <button class="btn btn-outline-primary option" data-value="{{this}}">
+            {{this}}
+        </button>
+        {{/each}}
+    </div>
+`));
+    Handlebars.registerPartial('image', Handlebars.compile(`
+    <div class="image-question">
+        <h4>{{question}}</h4>
+        <div class="d-flex gap-3">
+            {{#each images}}
+            <img src="{{url}}" class="img-thumbnail option-image" data-value="{{id}}" style="width: 100px; cursor: pointer;">
+            {{/each}}
+        </div>
+    </div>
+`));
   }
 
   async loadStartView() {
@@ -52,6 +75,7 @@ class QuizApp {
       this.state.startTime = Date.now();
       this.startTimer();
       this.loadNextQuestion();
+      this.state.name = formData.get('name');
   }
 
   async loadNextQuestion() {
@@ -87,7 +111,20 @@ class QuizApp {
                   btn.addEventListener('click', () => this.checkAnswer(btn.dataset.value, question));
               });
               break;
-          // Add handlers for other question types
+
+              case 'text':
+                  document.querySelector('.submit-answer').addEventListener('click', () => {
+                      const input = document.querySelector('.answer-input');
+                      this.checkAnswer(input.value.trim(), question);
+                  });
+                  break;
+      
+              case 'image':
+                  document.querySelectorAll('.option-image').forEach(img => {
+                      img.addEventListener('click', () => this.checkAnswer(img.dataset.value, question));
+                  });
+                  break;
+          
       }
   }
 
@@ -121,8 +158,53 @@ class QuizApp {
           });
       }
   }
-  
-
+  showResults() {
+    clearInterval(this.state.timer);
+    const html = this.templates.end({
+        name: this.state.name || 'Student',
+        score: this.calculateScore(),
+        time: this.getElapsedTime()
+    });
+    this.render(html);
+    document.querySelector('.restart').addEventListener('click', () => {
+        this.state.currentQuestionIndex = 0;
+        this.state.score = 0;
+        this.loadStartView();
+    });
+}
+async fetchData(endpoint) {
+    const response = await fetch(`${this.apiBase}/${endpoint}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${endpoint}: ${response.statusText}`);
+    }
+    return await response.json();
+}
+render(html) {
+    const appContainer = document.getElementById('app');
+    appContainer.innerHTML = html;
+}
+ 
+startTimer() {
+    this.state.timer = setInterval(() => {
+        const timerEl = document.querySelector('.scoreboard span:nth-child(1)');
+        if (timerEl) {
+            timerEl.textContent = `Time: ${this.getElapsedTime()}`;
+        }
+    }, 1000);
+}
+getElapsedTime() {
+    const now = Date.now();
+    const seconds = Math.floor((now - this.state.startTime) / 1000);
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+calculateScore() {
+    const total = this.state.quiz.questions.length;
+    const correct = this.state.score;
+    const percent = Math.round((correct / total) * 100);
+    return percent;
+}
   // Add remaining helper methods for timer, score calculation, etc.
 }
 

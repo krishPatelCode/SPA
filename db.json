@@ -4,6 +4,11 @@
       "id": 1,
       "title": "JavaScript Fundamentals",
       "questions": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": 2,
+      "title": "HTML Basics",
+      "questions": [6, 7, 8, 9, 10]
     }
   ],
   "questions": [
@@ -27,10 +32,68 @@
       "type": "image",
       "question": "Select the Python logo",
       "images": [
-        {"id": "py", "url": "https://example.com/python.png"},
-        {"id": "js", "url": "https://example.com/js.png"}
+        { "id": "py", "url": "https://example.com/python.png" },
+        { "id": "js", "url": "https://example.com/js.png" }
       ],
       "correct_answer": "py"
+    },
+    {
+      "id": 4,
+      "type": "multiple_choice",
+      "question": "Which of these is NOT a JavaScript data type?",
+      "options": ["String", "Number", "Float", "Boolean"],
+      "correct_answer": "Float",
+      "explanation": "JavaScript uses 'Number' for both integers and floats"
+    },
+    {
+      "id": 5,
+      "type": "text",
+      "question": "What method is used to add an element to the end of an array?",
+      "correct_answer": "push",
+      "explanation": "The push() method adds new items to the end of an array"
+    },
+
+    {
+      "id": 6,
+      "type": "multiple_choice",
+      "question": "What does HTML stand for?",
+      "options": ["HyperText Markup Language", "Hot Mail", "How To Make Lasagna"],
+      "correct_answer": "HyperText Markup Language",
+      "explanation": "HTML stands for HyperText Markup Language"
+    },
+    {
+      "id": 7,
+      "type": "text",
+      "question": "What tag is used for inserting an image in HTML?",
+      "correct_answer": "img",
+      "explanation": "The <img> tag is used to display images"
+    },
+    {
+      "id": 8,
+      "type": "multiple_choice",
+      "question": "Which tag is used to create a hyperlink?",
+      "options": ["link", "a", "href", "ul"],
+      "correct_answer": "a",
+      "explanation": "The <a> tag defines a hyperlink"
+    },
+    {
+      "id": 9,
+      "type": "text",
+      "question": "Which attribute specifies the destination URL in an <a> tag?",
+      "correct_answer": "href",
+      "explanation": "The href attribute defines the URL"
+    },
+    {
+      "id": 10,
+      "type": "multiple_choice",
+      "question": "What is the correct structure of an HTML document?",
+      "options": [
+        "<html><head><body>",
+        "<head><html><body>",
+        "<html><body><head>"
+      ],
+      "correct_answer": "<html><head><body>",
+      "explanation": "HTML structure should begin with html, then head, then body"
     }
   ]
 }

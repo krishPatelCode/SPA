@@ -14,8 +14,8 @@
             <div class="card-body">
                 <h2>Welcome to Quiz App</h2>
                 <form id="start-form">
-                    <input type="text" class="form-control mb-3" placeholder="Your Name" required>
-                    <select class="form-select mb-3" required>
+                    <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
+                    <select name="quiz" class="form-select mb-3" required>
                         {{#each quizzes}}
                         <option value="{{id}}">{{title}}</option>
                         {{/each}}
@@ -25,7 +25,7 @@
             </div>
         </div>
     </script>
-
+<!--quiz template-->
     <script id="quiz-template" type="text/x-handlebars-template">
         <div class="quiz-container">
             <div class="scoreboard mb-4">
@@ -42,9 +42,23 @@
             </div>
         </div>
     </script>
+
+    <!--end template-->
+    <script id="end-template" type="text/x-handlebars-template">
+        <div class="card text-center">
+            <div class="card-body">
+                <h2 class="card-title">Quiz Completed!</h2>
+                <p class="card-text">Nice job, {{name}}!</p>
+                <p class="card-text"><strong>Final Score:</strong> {{score}}%</p>
+                <p class="card-text"><strong>Total Time:</strong> {{time}}</p>
+                <button class="btn btn-primary restart">Try Another Quiz</button>
+            </div>
+        </div>
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script src="app.js"></script>
 </body>
 </html>

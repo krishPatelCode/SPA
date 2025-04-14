@@ -23,7 +23,7 @@
     {
       "id": 2,
       "type": "text",
-      "question": "What keyword declares a variable in ES6?",
+      "question": "What keyword declares a variable in JavaScript?",
       "correct_answer": "const",
       "explanation": "const and let are block-scoped declarations"
     },
@@ -32,8 +32,14 @@
       "type": "image",
       "question": "Select the Python logo",
       "images": [
-        { "id": "py", "url": "https://example.com/python.png" },
-        { "id": "js", "url": "https://example.com/js.png" }
+        {
+          "id": "py",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+        },
+        {
+          "id": "js",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+        }
       ],
       "correct_answer": "py"
     },

@@ -50,12 +50,12 @@ class QuizApp {
     Handlebars.registerPartial('image', Handlebars.compile(`
     <div class="image-question">
         <h4>{{question}}</h4>
-        <div class="d-flex gap-3">
-            {{#each images}}
-            <img src="{{url}}" class="img-thumbnail option-image" data-value="{{id}}" style="width: 100px; cursor: pointer;">
-            {{/each}}
-        </div>
-    </div>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+    {{#each images}}
+    <img src="{{url}}" class="img-thumbnail option-image" data-value="{{id}}" style="width: 120px; height: auto; cursor: pointer;">
+    {{/each}}
+  </div>
+</div>
 `));
   }
 
